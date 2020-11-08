@@ -15,8 +15,8 @@ In this notebook you will train your first neural network. Feel free to look bac
 #### Install dependencies freeze by poetry
 """
 
-!python3 -m pip install --upgrade pip
-!python3 -m pip install matplotlib numpy scikit-learn==0.23.2
+#!python3 -m pip install --upgrade pip
+#!python3 -m pip install matplotlib numpy scikit-learn==0.23.2
 
 """#### Import the different module we will need in this notebook 
 
@@ -331,7 +331,7 @@ minibatch_size = 10 #5
 nepoch = 9 #10
 learning_rate = 0.01 #0.01
 
-ffnn = FFNN(config=[784, 99, 99, 10], minibatch_size=minibatch_size, learning_rate=learning_rate)
+ffnn = FFNN(config=[784, 110, 110, 10], minibatch_size=minibatch_size, learning_rate=learning_rate)
 #784 110 110 10
 
 assert X_train.shape[0] % minibatch_size == 0
@@ -366,7 +366,6 @@ for i in range(0, nsample):
     true_target = None # Todo
     if prediction != true_target:
         # TODO
-        pass
 
 """## Open analysis
 
