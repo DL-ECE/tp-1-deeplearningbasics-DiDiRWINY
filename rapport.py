@@ -326,9 +326,9 @@ It's on 12 points because there is a lot of functions to fill but also we want t
 To have all the point your neural network needs to have a Test accuracy > 92 % !!
 """
 
-minibatch_size = 5 #5
-nepoch = 10 #10
-learning_rate = 0.01 #0.01
+minibatch_size = 10 #5
+nepoch = 9 #10
+learning_rate = 0.1 #0.1
 
 ffnn = FFNN(config=[784, 99, 99, 10], minibatch_size=minibatch_size, learning_rate=learning_rate)
 #784 110 110 10
