@@ -99,7 +99,6 @@ plot_one_image(X_test, y_test , 250)
 # It's important to normalize the data before feeding it into the neural network
 def normalize_data(dataset: np.array) -> np.array:
     normalized_dataset = dataset/255
-    print(normalized_dataset)
     return normalized_dataset
 X_train=normalize_data(X_train)
 X_test=normalize_data(X_test)
@@ -327,11 +326,11 @@ It's on 12 points because there is a lot of functions to fill but also we want t
 To have all the point your neural network needs to have a Test accuracy > 92 % !!
 """
 
-minibatch_size = 10 #5
-nepoch = 9 #10
+minibatch_size = 5 #5
+nepoch = 10 #10
 learning_rate = 0.01 #0.01
 
-ffnn = FFNN(config=[784, 110, 110, 10], minibatch_size=minibatch_size, learning_rate=learning_rate)
+ffnn = FFNN(config=[784, 99, 99, 10], minibatch_size=minibatch_size, learning_rate=learning_rate)
 #784 110 110 10
 
 assert X_train.shape[0] % minibatch_size == 0
@@ -351,7 +350,8 @@ X_demo = X_test[:nsample,:]
 y_demo = ffnn.forward_pass(X_demo)
 y_true = y_test[:nsample,:]
 
-index_to_plot = 50 
+index_to_plot = 50
+
 plot_one_image(X_demo, y_true, index_to_plot)
 
 # Compare to the prediction 
@@ -359,14 +359,17 @@ prediction = np.argmax(y_demo[index_to_plot,:])
 true_target = np.argmax(y_true[index_to_plot,:])
 
 # is it the same number ?
+print(prediction) 
+print(true_target)
 
 # loop arround the demo test set and try to find a miss prediction
+s=0
 for i in range(0, nsample):   
-    prediction = None # Todo
-    true_target = None # Todo
+    prediction = np.argmax(y_demo[i,:]) # Todo
+    true_target = np.argmax(y_true[i,:]) # Todo
     if prediction != true_target:
-        # TODO
-        pass
+      print(prediction)
+      pass        # TODO
 
 """## Open analysis
 
@@ -384,3 +387,6 @@ Also explain how the neural network behave when changing them ?
 TODO
 """
 
+#J'ai fait varier le nombre de couche et j'ai fixé les autres paramétres, j'en ai déduis que le nombre de couche devait être de 100
+#Lorsqu'on modifie npoche cela affecte énormément la précision cependant lorsqu'on modifie le nbatchsize pour des valeurs pas trop élevé la precision augmente 
+#Enfin avec le learningrate on a un soucis de overfitting si on l'augmente trop
